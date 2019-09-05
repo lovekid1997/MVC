@@ -1,0 +1,35 @@
+﻿
+#tenSach
+{
+    margin-left:30%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:25px;
+    font-weight:400;
+    margin-bottom:15px;
+}
+
+#tenSach span{
+    font-size:30px;
+}
+#anhBia{
+    margin-left:30%;
+
+}
+
+#moTa{
+    margin-left:7%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
+#maSach {
+    margin-left: 7%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
+#giaBan {
+    margin-left: 7%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}

@@ -1,0 +1,91 @@
+﻿
+@using BookStore.Models
+@model List<SAch>
+@{
+    ViewBag.Title = "hienThiTacCaNXB";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<link href="~/Content/TrangChuCss/TrangChu1.css" rel="stylesheet" />
+<link href="~/Content/cssChuDe/chude.css" rel="stylesheet" />
+@if (Model.Count == 0)
+{
+    <h1 style="margin-left:2%;">@ViewBag.Sach</h1>
+}
+
+<hr style="padding:0;border:none;margin:0;background-color:black;color:black)" />
+
+
+
+<div style="width:100%">
+    <div id="chude" style="width:25%;float:left;">
+
+        <hr style="padding:0;margin:0;border:none;background-color:black;margin-bottom:10px;" />
+        <div style="">
+            <div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;clear:both;font-size:20px;font-weight:400;margin-left:2%;margin-top:1%"> <h2>Tất cả chủ đề: </h2>  </div>
+            @foreach (var item in (List<NhaXuatBan>)ViewBag.lstNXB)
+            {
+                <a style="text-decoration:none;margin-top:5px;width:270px;margin-left:10px;" href="@Url.Action("hienThiTacCaNXB", new { @maNXB = item.MaNXB })" class="button button-submit btn-primary"><span>@item.TenNXB</span></a>
+                <br />
+            }
+        </div>
+
+    </div>
+
+
+    <div id="divBody" style="background:white;float:left;width:68%;border-left:0.5px solid rgba(0,0,0,.5) ">
+        <div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;clear:both;font-size:20px;font-weight:400;margin-top:5%;margin-left:15px;"> <h2>Nhà xuất bản @ViewBag.TenNXB: </h2>  </div>
+        @if (Model.Count == 0)
+        {
+            <h1 style="margin-left:2%;margin-top:1%">@ViewBag.Sach</h1>
+        }
+        @{ int i = 0; }
+        @{
+
+            foreach (var item in Model)
+            {
+                i++;
+            <div id="sanPham">
+                <div id="anhBia">
+                    <a href="@Url.Action("xemChiTiet","Sach",new {@maSach= item.MaSach })"><img title="@item.TenSach" src="@Url.Content("~/imgSP/" + item.AnhBia)" /></a>
+                </div>
+                <div id="thongTin">
+                    @if (item.TenSach.Length < 35)
+                    {
+                        <div id="tenSach" title="@item.TenSach">
+                            @item.TenSach
+                        </div>
+                        <br />
+                        <div id="xemChiTiet" style="margin-top:-30px;" title="@item.TenSach"><a href="@Url.Action("xemChiTiet","Sach",new {@maSach=item.MaSach })">Xem chi tiết...</a></div>
+                    }
+                    else
+                    {
+                        <div id="tenSach" title="@item.TenSach">@item.TenSach.Substring(0, 35)...</div>
+                        <br />
+                        <div id="xemChiTiet" title="@item.TenSach"><a href="@Url.Action("xemChiTiet","Sach",new {@maSach=item.MaSach })">Xem chi tiết...</a></div>
+                    }
+                    @if (item.GiaBan < 1000000)
+                    {
+                        <div id="donGia" style="color:orange;font-size:20px;"><strong><font color="Green">Giá: </font></strong><span style="font-size:25px">@string.Format("{0:#.000}", Convert.ToDecimal(item.GiaBan) / 1000)đ</span></div>
+                    }
+                </div>
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
+                {
+                    <button type="submit" class="btn btn-danger" onclick="alert('Đã thêm vào giỏ hàng')"
+                            style="background-color:rgb(255, 106, 0);width:250px;cursor:pointer">
+                        <i class="fas fa-shopping-cart" style="color:black"> Mua hàng</i>
+                    </button>
+                    @*<input type="submit"  value="muahang" class="button danger"/>*@
+                }
+            </div>
+
+                if (i % 2 == 0)
+                {
+                    <div style="clear:both"></div>
+                }
+            }
+        }
+
+    </div>
+</div>
+<div style="clear:both"></div>

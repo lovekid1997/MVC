@@ -1,0 +1,103 @@
+﻿@model BookStore.Models.SAch
+
+@{
+    ViewBag.Title = "Hiển Thị";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+
+
+<div>
+    <h1>Hiển thị sách</h1>
+    <hr style="background-color:black" />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </dt>
+
+        <dd>
+            @Html.Label(string.Format("{0:0,0 } VNĐ", Model.GiaBan))
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnhBia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnhBia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCapNhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCapNhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongTon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhaXuatBan.TenNXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuDe.TenChuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moi)
+        </dd>
+
+    </dl>
+    <hr style="background-color:black" />
+</div>
+<p style="font-size:20px;">
+    @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @MaSach = Model.MaSach })
+
+    <br />
+
+    @Html.ActionLink("Quay về", "Index")
+</p>

@@ -1,0 +1,112 @@
+﻿
+
+@using BookStore.Models;
+@model List<ChiTietDonHang>
+@{
+    ViewBag.Title = "LichSuMuaHang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+<style>
+
+    #chudeHienThi {
+        display: none;
+    }
+
+    #nxbHienThi {
+        display: none;
+    }
+
+    #anleftslider {
+        display: none;
+    }
+</style>
+
+
+<hr style="color:black;background-color:black" />
+<h2 style="margin-left:8%;font-size:30px;font-weight:normal;">Lịch sử mua hàng </h2>
+
+<table id="divGioHang">
+    @{ double i = 0;}
+    <tr class="bold">
+        <td>Ngày đặt</td>
+        <td>Tên Sách</td>
+        <td>Số lượng</td>
+
+        <td>Đơn giá</td>
+        <td>Tổng tiền của sản phẩm</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        i = i + Convert.ToDouble(@item.DonGia) * Convert.ToDouble(item.SoLuong);
+
+    <tr>
+        @{DateTime value = Convert.ToDateTime(item.DonHang.NgayDat);}
+        @if (value.Day == DateTime.Now.Day && value.Month == DateTime.Now.Month)
+        {
+            <td style="background-color:orange;font-size:20px">@item.DonHang.NgayDat</td>
+        }
+        else
+        {
+            <td>@item.DonHang.NgayDat</td>
+        }
+
+        <td>
+            <div>@item.SAch.TenSach</div>
+        </td>
+        <td>
+            <div>@item.SoLuong</div>
+        </td>
+
+
+        <td>@String.Format("{0:0,0}", @item.DonGia) VNĐ</td>
+
+        <td>@String.Format("{0:0,0}", @item.DonGia * item.SoLuong) VNĐ</td>
+    </tr>
+    }
+    <tr>
+        <td colspan="6" style="text-align:right;color:brown ">
+            <h2 style="float:left">Tổng tiền đã mua: </h2>
+            <span style="font-size:20px">@String.Format("{0:0,0}", i) VNĐ</span>
+        </td>
+    </tr>
+
+
+
+</table>
+
+<hr style="background-color:black; padding:0 ; margin:0 ; border:none; margin-top:20px" />
+<style>
+    #divGioHang {
+        border: 2px solid #666666;
+        margin-left: 8%;
+    }
+        #divGioHang .bold td{
+            font-weight:bold;
+            font-size:20px;
+        }
+        #divGioHang td {
+            padding: 10px;
+            border: 2px solid #666666;
+        }
+
+    .capnhatxoa {
+        display: block;
+        width: 191px;
+        height: 50px;
+        background-color: #CC9900;
+        text-align: center;
+        font-size: 16px;
+        line-height: 50px;
+        color: black;
+        font-weight: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #divGioHang a:hover {
+        background-color: #FF9900;
+        background: #FF9900;
+    }
+</style>

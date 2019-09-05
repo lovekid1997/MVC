@@ -1,0 +1,167 @@
+﻿
+@using BookStore.Models;
+@model List<SAch>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+@{ int conlai = Convert.ToInt32(Session["conlai"]);}
+
+@{ int i = 1;}
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta charset="UTF-8">
+    <script src="~/Content/char/export-data.js"></script>
+    <script src="~/Content/char/exporting.js"></script>
+    <script src="~/Content/char/highcharts.js"></script>
+</head>
+
+<div id="container" style="height: 570px; width:500px;margin: 0 auto;float:left;"></div>
+<table id="highcharts-data-table-0" style="height:540px;">
+    <caption class="highcharts-table-caption" >
+        Thị phần
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col" class="text" style="width:350px;">  Tên Sách </th>
+
+            <th scope="col" class="text">   Lượt xem</th>
+        </tr>
+    </thead>
+    <tbody id="setCSS">
+        @foreach (var item in Model)
+        {
+            if (i == 4)
+            {
+                <tr style="display:none"><th scope="row" class="text">_(@i) @item.TenSach</th><td class="number">@item.LuotXem</td></tr>
+            }
+            else
+            {
+                <tr><th scope="row" class="text">_(@i) @item.TenSach</th><td class="number">@item.LuotXem</td></tr>
+            }
+            i++;
+        }
+        <tr><th scope="row" class="text">_(9) Tất cả sách còn lại</th><td class="number">@conlai</td></tr>
+
+    </tbody>
+
+</table>
+
+
+<hr />
+<style>
+    .highcharts-table-caption {
+        margin-left: 38%;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+    #setCSS td {
+        font-size: 20px;
+        font-weight:bold;
+    }
+    #setCSS th{
+        font-size:18px;
+    }
+    tbody tr:nth-child(1) {
+        background-color: #058DC7;
+    }
+    tbody tr:nth-child(2) {
+        background-color: #50B432;
+    }
+    tbody tr:nth-child(3) {
+        background-color: #ED561B;
+    }
+    tbody tr:nth-child(4) {
+        background-color: #DDDF00;
+    }
+    tbody tr:nth-child(5) {
+        background-color: #24CBE5;
+    }
+    tbody tr:nth-child(6) {
+        background-color: #64E572;
+    }
+    tbody tr:nth-child(7) {
+        background-color: #FF9655;
+    }
+    tbody tr:nth-child(8) {
+        background-color: #FFF263;
+    }
+    tbody tr:nth-child(9) {
+        background-color: #6AF9C4;
+    }
+</style>
+
+<script type="text/javascript">
+            Highcharts.setOptions({
+                chart: { fontFamily: 'arial' },
+                colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572',
+                    '#FF9655', '#FFF263', '#6AF9C4'] 
+    });
+  
+  
+
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                 text: 'Thống kế lượt xem sách '
+            },
+            tooltip: {
+        pointFormat: '{series.name}: <strong>{point.percentage:.1f}%</strong>',
+
+            },
+            plotOptions: {
+        pie: {
+            allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                enabled: true,
+                        format: '<b>{point.name} </b>: {point.percentage:.1f} %',
+                        style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            , fontSize: ' 18px'
+                        }
+                }
+            }
+        },
+            series: [{
+        name: 'Số phần trăm: ',
+                colorByPoint: true,
+                data: [{
+            name: '(1)',
+                    y: @Model[0].LuotXem
+
+                }, {
+            name: '(2)',
+                    y:  @Model[1].LuotXem
+                }, {
+            name: '(3)',
+                    y:  @Model[2].LuotXem
+                },  {
+            name: '(4)',
+                    y:  @Model[3].LuotXem
+                }, {
+            name: '(5)',
+                   y:   @Model[4].LuotXem
+                },
+                    { name: '(6)', y:@Model[5].LuotXem},
+                    { name: '(7)', y:@Model[6].LuotXem},
+                    { name: '(8)', y:@Model[7].LuotXem},
+                    {
+            name: '(9)',
+                        y: @conlai
+                        }]
+            }]
+        });
+
+
+</script>
+
+

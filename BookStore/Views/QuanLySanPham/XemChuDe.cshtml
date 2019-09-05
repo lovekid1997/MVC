@@ -1,0 +1,79 @@
+﻿    @model IEnumerable<BookStore.Models.ChuDe>
+
+@{
+    ViewBag.Title = "XemChuDe";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+
+<div id="TaoMoi" >
+    <p style="font-size:25px;">
+        @Html.ActionLink("Tạo chủ đề mới", "ThemChuDe")
+    </p>
+</div>
+
+
+@using (Html.BeginForm("KetQuaTimKiemCD", "TimKiem", FormMethod.Post))
+{
+    @Html.TextBox("txtTimKiem", "", htmlAttributes:
+new {@class="textboxTimKiem",@placeholder="Nhập tên chủ đề cần tìm....." })
+    <button type="submit" style="padding: 0px 0px 0px 0px">
+        <img src="~/img/search1.png" width="30px" height="30px" />
+    </button>
+
+}
+<table class="table">
+    <tr>
+        <th >
+            @Html.DisplayNameFor(model => model.MaChuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenChuDe)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td >
+                @Html.DisplayFor(modelItem => item.MaChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChuDe)
+            </td>
+            <td id="TaoMoi1">
+                @Html.ActionLink("Chỉnh Sửa", "ChinhSuaCD", new { @MaCD = item.MaChuDe })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<style>
+    #TaoMoi a {
+        color: black;
+        width: auto;
+        height: auto;
+        -webkit-transition: all .5s ease-out;
+    }
+        #TaoMoi a:hover {
+            background-color :coral;    
+                font-size:24px;
+            -webkit-transition: all .5s ease-out;
+            text-decoration:underline;
+        }
+    #TaoMoi1 a {
+        color: black;
+        width: auto;
+        height: auto;
+        -webkit-transition: all .5s ease-out;
+    }
+
+        #TaoMoi1 a:hover {
+            background-color: coral;
+            
+            -webkit-transition: all .5s ease-out;
+            text-decoration: underline;
+        }
+</style>

@@ -1,0 +1,17 @@
+﻿
+@using BookStore.Models;
+@model List<NhaXuatBan>
+
+<link href="~/Content/cssNXB/nxb.css" rel="stylesheet" />
+
+<div id="nhaxuatban">
+    @{
+    <button type="button" title="Nhà xuất bản" style="width:300px;background-color:brown" class="btn btn-danger btn-block">Nhà xuất bản</button>
+        foreach (var item in Model)
+        {
+
+            <div><a href="@Url.Action("hienThiTacCaNXB",new {@maNXB = item.MaNXB })"><i class="fas fa-book-open" style="margin-right:5px;"></i>@item.TenNXB</a></div>
+        }
+        <div><a href="@Url.Action("hienThiDanhMucNXB")" style="font-size:25px;"><i class="fas fa-bookmark" style="margin-right:5px;"></i><strong>Nhà xuất bản khác....</strong></a></div>
+    }
+</div>

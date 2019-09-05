@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<style>
+
+    #chudeHienThi {
+        display: none;
+    }
+
+    #nxbHienThi {
+        display: none;
+    }
+
+    #anleftslider {
+        display: none;
+    }
+</style>
+<hr style="padding:0;margin:0;border:none;background-color:black;color:black;margin-bottom:20px;" />
+
+<div id="dangnhap">
+    <h2>Đăng nhập</h2>
+    <h1>@ViewBag.ThongBao</h1>
+
+    @using (Html.BeginForm())
+    {
+        <span>Tài khoản: </span>
+        <br />
+        @Html.TextBox("txtTaiKhoan");
+        <br />
+        <span>Mật khẩu: </span>
+        <br />
+        <input name="txtMatKhau" type="password" />
+        <br />
+        <input type="submit" style="float:left" id="btnSubmit" name="btnSubmit" value="Đăng nhập"/>
+    }
+        <div id="theA">
+            <a class="theA" href="@Url.Action("DangKy","NguoiDung")">Đăng ký</a>
+        </div>
+       
+</div>
+<hr style="padding:0;margin:0;border:none;background-color:black;color:black;margin-top:20px;" />
+<style>
+    #theA {
+        /*position: absolute;
+        top: 416px;
+        left: 180px;*/
+        margin-top:21.5px;
+    }
+        #theA a:hover {
+            text-decoration: none;
+
+            background-color:chocolate;
+            -webkit-transition: all .5s ease-out;
+        }
+    .theA {
+        background-color: orangered;
+        padding: 10.5px 40px;
+        color: black;
+        -webkit-transition: all .5s ease-out;
+    }
+    #dangnhap {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 20px;
+        background-color: PaleGoldenrod;
+    }
+
+    #btnSubmit {
+        width: 150px;
+        height: 50px;
+        color: black;
+        background-color: orangered;
+        border: 0.5px solid rgb(255, 255,255);
+        text-align: center;
+        line-height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+
+    }
+</style>

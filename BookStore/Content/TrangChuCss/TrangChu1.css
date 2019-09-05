@@ -1,0 +1,37 @@
+﻿#divBody #sanPham {
+    float: left;
+    width: 250px;
+    margin-left: 10%;
+}
+
+    #divBody #sanPham img {
+        width: 250px;
+        height: 200px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+#thongTin {
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 0 15px 8px 15px;
+    font-family: "Segoe UI";
+    font-size: 20px;
+    font-weight: 400;
+
+}
+
+#tenSach {
+    padding: 5px;
+    height: 80px;
+}
+
+#donGia {
+    padding: 5px;
+    font-size: 15px;
+    border-top: 1px solid rgba(0,0,0,.2);
+    font-weight: 200;
+}
+
+#divBody {
+    margin: auto;
+}

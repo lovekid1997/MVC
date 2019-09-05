@@ -1,0 +1,108 @@
+﻿
+
+@using BookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<SAch>
+@{
+    ViewBag.Title = "hienThiSachMoi";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<link href="~/Content/TrangChuCss/TrangChu1.css" rel="stylesheet" />
+<div id="sachMoiXuatBan" style="clear:both;padding:13px 0px 0px 0px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight:bold;margin-left:90px;background-color:white;background:white">
+    <h2>Sách loại mới nhất: </h2>
+
+</div>
+<hr style="background-color:black" />
+
+
+<div id="divBody" style="background:white">
+
+    @{ int i = 0; }
+    @{
+        foreach (var item in Model)
+        {
+            i++;
+            <div id="sanPham">
+                <div id="anhBia">
+                    <a href="@Url.Action("xemChiTiet","Sach",new {@maSach= item.MaSach })"><img title="@item.TenSach" src="@Url.Content("~/imgSP/" + item.AnhBia)" /></a>
+                </div>
+                <div id="thongTin">
+                    @if (item.TenSach.Length < 35)
+                    {
+                        <div id="tenSach" title="@item.TenSach">
+                            @item.TenSach
+                        </div>
+                        <br />
+                        <div id="xemChiTiet" style="margin-top:-30px;" title="@item.TenSach"><a href="@Url.Action("xemChiTiet","Sach",new {@maSach=item.MaSach })">Xem chi tiết...</a></div>
+                    }
+                    else
+                    {
+                        <div id="tenSach" title="@item.TenSach">@item.TenSach.Substring(0, 35)...</div>
+                        <br />
+                        <div id="xemChiTiet" title="@item.TenSach"><a href="@Url.Action("xemChiTiet","Sach",new {@maSach=item.MaSach })">Xem chi tiết...</a></div>
+                    }
+                    @if (item.GiaBan < 1000000)
+                    {
+                        <div id="donGia" style="color:orange;font-size:20px;"><strong><font color="Green">Giá: </font></strong><span style="font-size:25px;">@string.Format("{0:#.000}", Convert.ToDecimal(item.GiaBan) / 1000)đ</span></div>
+                    }
+                </div>
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = item.MaSach, @strUrl = Request.Url.ToString() }))
+                {
+                    <button type="submit" class="btn btn-danger" onclick="alert('Đã thêm vào giỏ hàng')"
+                            style="background-color:rgb(255, 106, 0);width:250px;cursor:pointer">
+                        <i class="fas fa-shopping-cart" style="color:black"> Mua hàng</i>
+                    </button>
+                    @*<input type="submit"  value="muahang" class="button danger"/>*@
+                }
+            </div>
+
+            if (i % 3 == 0)
+            {
+                <div style="clear:both"></div>
+            }
+        }
+    }
+
+</div>
+<div style="clear:both"></div>
+<div id="PhanTrang">
+    <div class="abc">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    </div>
+
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("hienThiSachMoi", "Sach", new { @page = page }))
+    </div>
+
+</div>
+
+<style>
+    .MenuTrang li {
+        padding: 0;
+        margin: 0;
+        border: none;
+        display: inline;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        margin: 5px;
+        line-height: 45px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+    }
+
+    #PhanTrang {
+        border-bottom: 1px solid #C9E4D6;
+    }
+
+    .abc {
+        margin-left: 35px;
+        margin-top: 5px;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+</style>
+

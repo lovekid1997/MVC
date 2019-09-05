@@ -1,0 +1,33 @@
+﻿
+
+@using BookStore.Models;
+@model List<ChuDe>
+
+<link href="~/Content/cssChuDe/chude.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "hienThiTatCaChuDe";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<style>
+
+    #chudeHienThi{
+        display:none;
+    }
+    #nxbleft {
+        display: none;
+    }
+</style>
+@*hien thi danh muc chu de*@
+<div id="chude" style="width:370px">
+
+        <hr style="padding:0;margin:0;border:none;background-color:black;margin-bottom:10px;" />
+        <div style="">
+            <div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;clear:both;font-size:20px;font-weight:400;margin-left:2%;margin-top:1%"> <h2>Tất cả chủ đề: </h2>  </div>
+            @foreach (var item in Model)
+            {
+                <a style="text-decoration:none;margin-top:5px;width:270px;margin-left:10px;" href="@Url.Action("timSachTheoChuDe", new { @maChuDe = item.MaChuDe })" class="button button-submit btn-primary"><span>@item.TenChuDe</span></a>
+                <br />
+            }
+        </div>
+    
+</div>

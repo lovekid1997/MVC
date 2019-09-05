@@ -1,0 +1,111 @@
+﻿@model IEnumerable<BookStore.Models.KhachHang>
+
+@{
+    ViewBag.Title = "KetQuaTimKiemKH";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<hr />
+
+<div style="margin-left:30%;">
+    <h1>Thông tin khách hàng</h1>
+</div>
+<div id="sachMoiXuatBan" style="clear:both;padding:0px 0px 0px 0px;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight:bold;margin-left:90px;background-color:white;background:white">
+    <h2>Kết quả tìm kiếm: </h2>
+    @ViewBag.ThongBao
+</div>
+<hr style="background-color:black" />
+@using (Html.BeginForm("KetQuaTimKiemKH", "TimKiem", FormMethod.Post))
+{
+    @Html.TextBox("txtTimKiem", "", htmlAttributes:
+new {@class="textboxTimKiem",@placeholder="Nhập tên khách hàng cần tìm....." })
+    <button type="submit" style="padding: 0px 0px 0px 0px">
+        <img src="~/img/search1.png" width="30px" height="30px" />
+    </button>
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaiKhoan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaiKhoan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgaySinh)
+            </td>
+            <td id="TaoMoi1">
+                @Html.ActionLink("Chỉnh sửa", "SuaThongTin", new { @maKH = item.MaKH }) <br />
+                @Html.ActionLink("Hiển Thị", "HienThiThongTin", new { @maKH = item.MaKH }) <br />
+
+            </td>
+        </tr>
+    }
+
+</table>
+<style>
+    #TaoMoi1 a {
+        color: black;
+        width: auto;
+        height: auto;
+        -webkit-transition: all .5s ease-out;
+    }
+
+        #TaoMoi1 a:hover {
+            background-color: coral;
+            -webkit-transition: all .5s ease-out;
+            text-decoration: underline;
+        }
+</style>

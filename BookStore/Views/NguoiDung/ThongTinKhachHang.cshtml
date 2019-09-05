@@ -1,0 +1,110 @@
+﻿@model BookStore.Models.KhachHang
+
+@{
+    ViewBag.Title = "ThongTinKhachHang";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+<style>
+    #chudeHienThi {
+        display: none;
+    }
+
+    #nxbHienThi {
+        display: none;
+    }
+
+    #anleftslider {
+        display: none;
+    }
+</style>
+<hr style="color:black;background-color:black" />
+<h2 style="margin-left:8%;font-size:30px;font-weight:normal;">Thông tin của bạn </h2>
+
+<table id="divGioHang">
+    <tr>
+        <td>Họ Tên</td>
+        <td>Tài Khoản</td>
+
+        <td>Email</td>
+        <td>Địa chỉ</td>
+        <td>Điện thoại</td>
+        <td>
+            Giới tính
+        </td>
+        <td>Ngày Sinh</td>
+    </tr>
+
+
+
+    <tr>
+        <td style="min-width:300px">@Model.HoTen</td>
+
+        <td >@Model.TaiKhoan</td>
+
+
+
+        <td>@Model.Email</td>
+
+        <td> @Model.DiaChi</td>
+
+        <td> @Model.DienThoai</td>
+        <td>
+            @Model.GioiTinh
+        </td>
+        <td>@Model.NgaySinh</td>
+
+    </tr>
+
+    
+    <tr>
+        <td colspan="6" style="text-align:right;color:brown ">
+
+            @if (Session["admin"] == null)
+            {
+                <a class="capnhatxoa" style="text-decoration:none;float:right" title="Sửa Thông Tin" href="@Url.Action("SuaThongTin","NguoiDung",new { @maKH = Model.MaKH })">Đổi mật khẩu</a>
+                <a class="capnhatxoa" style="text-decoration:none;margin-right:5px;float:right" title="Sửa Thông Tin" href="@Url.Action("LichSuMuaHang", "NguoiDung", new { @maKH = Model.MaKH })">Lịch sử mua hàng</a>
+            }
+            else
+            {
+                <a class="capnhatxoa" style="text-decoration:none;float:right" title="Sửa Thông Tin" href="@Url.Action("SuaThongTin","NguoiDung",new { @maKH = Model.MaKH })">Đổi mật khẩu</a>
+            }
+        </td>
+    </tr>
+
+</table>
+
+<hr style="background-color:black; padding:0 ; margin:0 ; border:none; margin-top:20px" />
+<style>
+    #divGioHang {
+        border: 2px solid #666666;
+    margin-left:8%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 2px solid #666666;
+        }
+
+    .capnhatxoa {
+        display: block;
+        width: 191px;
+        height: 50px;
+        background-color: #CC9900;
+        text-align: center;
+        font-size: 16px;
+        line-height: 50px;
+        color: black;
+        font-weight: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #divGioHang a:hover {
+        background-color: #FF9900;
+        background: #FF9900;
+    }
+    /*#nivosliderHienThi{
+        display:none;
+    }*/
+</style>

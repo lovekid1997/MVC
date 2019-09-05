@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0c71ea53c154f5cac00209407d7dffd" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBanSachModel.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.ChuDe" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.DonHang" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.KhachHang" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.NhaXuatBan" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.SAch" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.sysdiagram" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.TacGia" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.ThamGia" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBanSachModel.imgQC" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="QLBanSachModel.FK_ChiTietDonHang_DonHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanSachModel.FK_ChiTietDonHang_SAch" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanSachModel.FK_SAch_ChuDe" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanSachModel.FK_DonHang_KhachHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanSachModel.FK_SAch_NhaXuatBan" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanSachModel.FK_ThamGia_SAch" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBanSachModel.FK_ThamGia_TacGia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

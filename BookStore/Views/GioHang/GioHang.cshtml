@@ -1,0 +1,113 @@
+﻿@using BookStore.Models;
+@model List<GioHang>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+<style>
+
+    #chudeHienThi {
+        display: none;
+    }
+
+    #nxbHienThi {
+        display: none;
+    }
+
+    #anleftslider {
+        display: none;
+    }
+</style>
+<hr />
+<h2 style="margin-left:8%;font-size:30px;font-weight:normal;">Giỏ hàng của bạn: </h2>
+<hr style="color:black;background-color:black" />
+<table id="divGioHang">
+    <tr>
+        <td>Mã sách</td>
+        <td>Tên Sách</td>
+        <td>Ảnh bìa </td>
+        <td>Đơn giá</td>
+        <td>Số lượng</td>
+        <td>Thành tiền</td>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.imaSach</td>
+
+            <td style="min-width:500px">@item.stenSach</td>
+
+            <td>
+                <a href="@Url.Action("xemChiTiet","Sach", new {@maSach=item.imaSach })" title="@item.stenSach">
+                    <img src="@Url.Content("~/imgSP/"+item.sHinhAnh)" alt="@item.stenSach"
+                         width="50" height="50" />
+                </a>
+
+            </td>
+
+            <td>@String.Format("{0:0,0}", @item.dDonGia) VNĐ</td>
+
+            <td>@item.iSoLuong</td>
+
+            <td>@String.Format("{0:0,0}", @item.dThanhTien) VNĐ</td>
+
+
+
+        </tr>
+
+    }
+    <tr>
+        <td colspan="6" style="text-align:right;color:brown ">
+            <a class="capnhatxoa" style="text-decoration:none;float:right" title="Sửa giỏ hàng" href="@Url.Action("SuaGioHang","GioHang")">Sửa Giỏ Hàng</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" style="text-align:center;color:black">
+            @using (Html.BeginForm("DatHang", "GioHang"))
+            {
+                <button type="submit" class="btn btn-danger" title="Đặt hàng"
+                        style="background-color:#FF9900;width:191px;height:auto;cursor:pointer;font-size:16px;float:right">
+                    <i class="" style="color:black;text-align:center; ">Đặt hàng</i>
+                </button>
+            }
+        </td>
+    </tr>
+</table>
+
+<hr style="background-color:black; padding:0 ; margin:0 ; border:none; margin-top:20px" />
+<style>
+    #divGioHang {
+        border: 2px solid #666666;
+        margin-left: 8%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 2px solid #666666;
+        }
+
+    .capnhatxoa {
+        display: block;
+        width: 191px;
+        height: 50px;
+        background-color: #CC9900;
+        text-align: center;
+        font-size: 16px;
+        line-height: 50px;
+        color: black;
+        font-weight: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #divGioHang a:hover {
+        background-color: #FF9900;
+        background: #FF9900;
+    }
+    /*#nivosliderHienThi{
+        display:none;
+    }*/
+</style>

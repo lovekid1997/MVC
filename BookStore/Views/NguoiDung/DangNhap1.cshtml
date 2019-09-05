@@ -1,0 +1,17 @@
+﻿@using BookStore.Models;
+@{KhachHang khang = (KhachHang) Session["TaiKhoan"]; }
+@if (Session["TaiKhoan"] is null)
+{
+<a href="@Url.Action("DangNhap", "NguoiDung")"><i class="fas fa-sign-in-alt"></i> @ViewBag.ThongBao  </a>
+
+}
+else
+{
+<a href="@Url.Action("ThongTinKhachHang", "NguoiDung",new { @maKH = khang.MaKH })">@ViewBag.ThongBao  </a>
+    <style>
+        #hienthiDanKy{
+            display:none;
+
+        }
+    </style>
+}

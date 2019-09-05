@@ -1,0 +1,90 @@
+﻿@model BookStore.Models.ChuDe
+
+@{
+    ViewBag.Title = "Thêm chủ đề";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<hr />
+<div style="margin-left:30%;">
+
+    <h1>Thêm chủ đề</h1>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr style="background-color:black" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenChuDe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenChuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr style="background-color:black" />
+        <br />
+
+        <div class="form-group">
+            <div id="css" class="col-md-offset-2 col-md-10">
+                <form>
+                    <input value="Thêm chủ đề mới" type="submit" />
+                </form>
+                @Html.ActionLink("Trở về", "Index")
+            </div>
+
+        </div>
+    </div>
+}
+
+<div style="font-size:20px">
+
+</div>
+<style>
+    #css input[type=submit] {
+        padding: 0.7em 0.7em 0.7em 0.7em;
+        font-size: 1em;
+        font-weight: bold;
+        font-family: "Open Sans";
+        text-transform: uppercase;
+        color: black;
+        background-size: 54px 204px;
+        background-color: coral;
+        border-radius: 2em;
+        border: 0.15em solid #F9C23C;
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+    }
+
+    #css [type="submit"]:hover {
+        color: black;
+        background-color: whitesmoke;
+        border-color: #AAAAAA;
+        background-position: 0.75em bottom;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    #css [type="submit"]:focus {
+        background-position: 2em -4em;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+
+    #css {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+    }
+
+        #css a {
+            font-size: 25px;
+            color: coral;
+            text-decoration: underline;
+        }
+</style>

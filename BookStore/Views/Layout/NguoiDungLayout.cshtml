@@ -1,0 +1,166 @@
+﻿    
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/NguoiDungCss/fonts.css" rel="stylesheet" />
+    <link href="~/Content/NguoiDungCss/screen.css" rel="stylesheet" />
+    <link href="~/Content/NguoiDungCss/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/nivo slider/nivo-slider.css" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.nivo.slider.js"></script>
+    <script src="~/nivo slider/jquery.nivo.slider.pack.js"></script>
+    <link href="~/Content/search.css" rel="stylesheet" />
+  
+    @*@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');*@
+</head>
+
+<body>
+  
+    <div id="ToanTrang">
+
+        <section class="blank">
+            <div class="flash">
+                <div class="icDienthoai">
+                    <a href="#"><i class="fas fa-phone "></i>  (083)0909783</a>
+                </div>
+                <div class="Dangkydangnhap">
+                    @Html.Action("GioHangPartial", "GioHang")|
+                    <span id="hienthiDanKy">
+                        <a href="@Url.Action("DangKy","NguoiDung")"><i class="fas fa-user "></i>Đăng ký </a>|
+                    </span>
+                     
+                  
+                    @*<a href="@Url.Action("DangNhap","NguoiDung")"><i class="fas fa-sign-in-alt "></i>Đăng nhập</a>*@
+                    @Html.Action("DangNhap1", "NguoiDung")|
+                    @if (Session["admin"] != null)
+                    {
+                      
+                    <a href="@Url.Action("Index","QuanLySanPham")">Trang Quản Lý |</a>
+                    
+                    }
+                    @if (Session["TaiKhoan"] != null)
+                    {
+                    @Html.ActionLink("Thoát", "Thoat", "NguoiDung")
+                    }
+                </div>
+            </div>  
+
+
+            <div class="flash success" id="divdanhmuc">
+                <div id="hopthoaitimkiem">
+                    @using (Html.BeginForm("KetQuaTimKiem", "TimKiem", FormMethod.Post))
+                    {
+                        @Html.TextBox("txtTimKiem", "", htmlAttributes:
+            new {@class="textboxTimKiem",@placeholder="Nhập vào từ khóa cần tìm..." })
+
+                            
+                        <button type="submit" style="padding: 0px 0px 0px 0px;position:absolute;top:25px; left:250px">
+                            <img src="~/img/search1.png" style="width:30px;height:30px;" />
+                        </button>
+                    }
+                </div>
+
+                @*menu ben phai*@
+                <ul class="navdanhmuc">
+                    <li >
+                        <div style="display:inline-block">
+                            <a href="@Url.Action("Index","Home")">Trang chủ</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">Liên hệ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("HuongDan","TongHop")">Hướng Dẫn</a>
+                    </li>
+                    <li>
+                        <a href="#">Giới thiệu</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index","Home")">Sách</a>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+
+        <section id="anleftslider">
+
+            <div id="leftslider">
+
+                @*ChenPartial*@
+                <div class="activity">
+
+                    @Html.Action("SachMoiPartial", "Sach")
+
+                </div>
+            </div>
+            <div id="slider" class="nivoSlider">
+                <img src="~/img/slider1.jpg" />
+                @*<img src="~/img/slider2.jpg" />
+                <img src="~/img/slider3.jpg" />
+                <img src="~/img/slider4.jpg" />*@
+                
+            </div>
+            @*<h2 style="clear:both;font-weight:bold">Chào mừng các bạn đến với BookStore của chúng tôi. (^_^)</h2>*@
+            <div style="clear:both">
+
+            </div>
+        </section>
+
+
+
+        @*div body, index*@
+        <div id="noiDung" style="background-color:white">
+            @RenderBody()
+        </div>
+
+        <section id="chudeHienThi">
+            @*ChuDe*@
+            <div>
+                @Html.Action("ChuDePartial","ChuDe")
+                
+            </div>
+        </section>
+
+        @*div nha xuat ban*@
+        <section id="nxbHienThi" class="blank items" style="background-color:white">
+            <div id="nxbleft">
+                <div class="item">
+                    <div class="item-info">
+                        @Html.Action("NXBPartial","NXB")
+                        
+                    </div>
+                    <img src="https://yt3.ggpht.com/a-/AAuE7mDGN4WmsOPvQURqbOiac_2JV6ntwAFVXQIzVg=s900-mo-c-c0xffffffff-rj-k-no" alt="Image" style="height:380px" />
+                </div>
+            </div>
+            <div id="nxbright" style="background-color:white">
+                @RenderSection("Noidungbenphai",false)
+            </div>
+            <div style="clear:both; background-color:white" >
+                <a href="#" class="button button-buy">
+                    CÔNG TY CỔ PHẦN THƯƠNG MẠI DỊCH VỤ MÊ KÔNG COM
+
+                    Địa chỉ: 52/2 Thoại Ngọc Hầu, Phường Hòa Thạnh, Quận Tân Phú, Hồ Chí Minh
+                    MST: 0303615027 do Sở Kế Hoạch Và Đầu Tư Tp.HCM cấp ngày 10/03/2011
+                    Tel: 028.73008182 - Fax: 028.39733234 - Email: hotro@vinabook.comasdas
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: ''
+            });
+        });
+    </script>
+</body>
+</html>

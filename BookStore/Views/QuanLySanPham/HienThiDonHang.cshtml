@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BookStore.Models.ChiTietDonHang>
+
+@{
+    ViewBag.Title = "HienThiDonHang";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>Đơn hàng</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaDonHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SAch.AnhBia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </th>
+        <th>Thành tiền</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaDonHang)
+        </td>
+        <td>
+            <img style="width:80px;height:80px;" src="@Url.Content("~/imgSP/"+item.SAch.AnhBia)" alt="Alternate Text" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoLuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonGia)
+        </td>
+        @{ var tt = @item.SoLuong * @item.DonGia;}
+        <td>
+            @tt
+        </td>
+    </tr>
+            }
+
+</table>

@@ -1,0 +1,153 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.PagedList<BookStore.Models.SAch>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<hr />
+
+<div style="margin-left:30%;">
+
+
+    <h1>Quản lý sản phẩm</h1>
+</div>
+
+@using (Html.BeginForm("KetQuaTimKiemQL", "TimKiem", FormMethod.Post))
+{
+    @Html.TextBox("txtTimKiem", "", htmlAttributes:
+new {@class="textboxTimKiem",@placeholder="Nhập tên sách cần tìm....." })
+    <button type="submit" style="padding: 0px 0px 0px 0px">
+        <img src="~/img/search1.png" width="30px" height="30px" />
+    </button>
+
+}
+
+<table class="table" style="clear:both">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MaSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().TenSach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().GiaBan)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.First().MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().AnhBia)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.First().NgayCapNhat)
+        </th>
+        <th >
+            @Html.DisplayNameFor(model => model.First().SoLuongTon)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.First().MaNXB)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.First().MaChuDe)
+        </th>
+        <th style="display:none">
+            @Html.DisplayNameFor(model => model.First().Moi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr style="width:100%">
+            <td style="width:2%">
+                @Html.DisplayFor(modelItem => item.MaSach)
+            </td>
+            <td style="width:10%">
+                @Html.DisplayFor(modelItem => item.TenSach)
+            </td>
+            <td style="width:5%">
+                @Html.Label(string.Format("{0:0,0 } VNĐ", item.GiaBan))
+            <td style="width:30%;display:none;">
+                @Html.Raw(item.MoTa)
+            </td>
+            <td style="width:15%">
+                <img src="@Url.Content("~/imgSP/"+item.AnhBia)" width="150" height="150" alt="@item.TenSach" />
+            </td>
+            <td style="width:8%;display:none;">
+                @Html.DisplayFor(modelItem => item.NgayCapNhat)
+            </td>
+            <td width="15%">
+                @Html.DisplayFor(modelItem => item.SoLuongTon)
+            </td>
+            <td style="width:5%;display:none;">
+                @Html.DisplayFor(modelItem => item.NhaXuatBan.TenNXB)
+            </td>
+            <td style="width:6%;display:none">
+                @Html.DisplayFor(modelItem => item.ChuDe.TenChuDe)
+            </td>
+            <td style="width:2%;display:none;">
+                @Html.DisplayFor(modelItem => item.Moi)
+            </td>
+            <td >
+                @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { @MaSach = item.MaSach }) <br />
+                @Html.ActionLink("Hiển Thị", "HienThi", new { @MaSach = item.MaSach }) <br />
+                @Html.ActionLink("Xóa", "Xoa", new { @MaSach = item.MaSach })
+            </td>
+        </tr>
+    }
+
+</table>
+<div id="PhanTrang">
+    <div class="abc">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    </div>
+
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", "QuanLySanPham", new { @page = page }))
+    </div>
+
+</div>
+
+<style>
+    .MenuTrang li {
+        padding: 0;
+        margin: 0;
+        border: none;
+        display: inline;
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+        margin: 5px;
+        line-height: 45px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+    }
+
+    #PhanTrang {
+        border-bottom: 1px solid #C9E4D6;
+    }
+
+    .abc {
+        margin-left: 35px;
+        margin-top: 5px;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .table a{
+        color: black;
+        text-decoration:underline;
+        
+    }
+    .table a:hover{
+        background-color:coral;
+    }
+    /*searchCSS*/
+
+
+</style>

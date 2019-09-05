@@ -1,0 +1,103 @@
+﻿
+
+
+@using BookStore.Models;
+@model List<GioHang>
+@{
+    ViewBag.Title = "Sửa Giỏ Hàng";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+
+<style>
+    #nxbleft {
+        display: none;
+    }
+
+    #chudeHienThi {
+        display: none;
+    }
+</style>
+<h2 style="margin-left:8%;font-size:30px;font-weight:normal">Giỏ hàng của bạn: </h2>
+<hr style="color:black;background-color:black" />
+<table id="divGioHang">
+    <tr>
+        <td>Mã sách</td>
+        <td>Tên Sách</td>
+        <td>Ảnh bìa </td>
+        <td>Đơn giá</td>
+        <td>Số lượng</td>
+        <td>Thành tiền</td>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@item.imaSach</td>
+
+        <td>@item.stenSach</td>
+
+        <td>
+            <a href="@Url.Action("xemChiTiet","Sach", new {@maSach=item.imaSach })" title="@item.stenSach">
+                <img src="@Url.Content("~/imgSP/"+item.sHinhAnh)" alt="@item.stenSach"
+                     width="50" height="50" />
+            </a>
+
+<td>@String.Format("{0:0,0}", @item.dDonGia) VNĐ</td>
+
+        @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @iMaSP = item.imaSach }))
+        {
+            <td >@Html.TextBox("txtSoLuong", @item.iSoLuong)  </td>
+
+
+            <td>@String.Format("{0:0,0}", @item.dThanhTien) VNĐ</td>
+            <td>
+                <button type="submit" class="btn btn-danger"
+                        style="background-color:#FF9900;width:191px;height:auto;cursor:pointer;font-size:16px">
+                    <i class="" style="color:black;text-align:center; "> Cập nhật</i>
+                </button>
+                <br />
+                @*<a>@Html.ActionLink("Xóa", "XoaGioHang", new { @iMaSP = item.imaSach })</a>*@
+               <a class="capnhatxoa"  style="text-decoration:none;margin-top: 2px;" title="Xóa" href="@Url.Action("XoaGioHang","GioHang",new { @iMaSP = item.imaSach })">Xóa</a>
+            </td>
+            @*<input type="submit" value="Cập nhật"*@
+        }
+    </tr>
+    }
+</table>
+
+<hr style="background-color:black; padding:0 ; margin:0 ; border:none; margin-top:20px" />
+<style>
+    #divGioHang {
+        border: 2px solid #EEEEEE;
+        margin-left: 8%;
+    }
+
+        #divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+        }
+        #divGioHang a:hover {
+            background-color: #FF9900;
+            background: #FF9900;
+        }
+    .capnhatxoa {
+        display: block;
+        width: 191px;
+        height: 50px;
+        background-color: #CC9900;
+        text-align: center;
+        font-size: 16px;
+        line-height: 50px;
+        color: black;
+        font-weight: normal;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    /*#buttonCapNhat button:hover {
+
+        background-color: #CC9900;
+        background: #CC9900;
+        
+    }*/
+</style>

@@ -1,0 +1,95 @@
+﻿
+
+@using BookStore.Models;
+@model SAch
+@{
+    ViewBag.Title = "xemChiTiet";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+<link href="~/Content/xemchitiet/xemchitiet.css" rel="stylesheet" />
+<style>
+    #noiDung {
+        display: none;
+    }
+
+    #divMenuSlider {
+        display: none;
+    }
+
+    #nxbright {
+        background-color: white;
+    }
+</style>
+<hr style="padding:0; margin: 0;border:none;background-color:black;margin-bottom:10px;" />
+
+<div id="tenSach"><span>Tên sách: @Model.TenSach</span></div>
+<div id="anhBia"><img src="@Url.Content("~/imgSP/"+ Model.AnhBia)" alt="Alternate Text" /></div>
+<div id="moTa"><span><strong>Mô tả:</strong> @Model.MoTa</span></div>
+<div id="giaBan"><strong>Giá bán:</strong> @string.Format("{0:#.000}", Model.GiaBan / 1000)đ</div>
+<div id="maSach"><strong>Mã Sách:</strong> @Model.MaSach</div>
+
+@section Noidungbenphai{
+    <div id="HinhAnh">
+        <img src="@Url.Content("~/imgSP/"+ Model.AnhBia)" alt="@Model.TenSach" />
+    </div>
+    <div id="ThongTin">
+        <div id="TenSach">Tên sách: @Model.TenSach</div>
+        <div id="ChuDe">Chủ đề: @ViewBag.TenChuDe</div>
+        <div id="NhaXuatBan">Nhà xuất bản: @ViewBag.NhaXuatBan</div>
+        <div id="MoTa">Nội dung tóm tắt: <br />@Model.MoTa<br /></div>
+        <div id="Gia"><span style="color: green; font-weight:normal;">Đơn giá: </span><br /><span id="Gia">@string.Format("{0:0,0}", Model.GiaBan) VNĐ</span></div>
+        <br />
+        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSach = Model.MaSach, @strUrl = Request.Url.ToString() }))
+        {
+            <button type="submit" class="btn btn-danger" onclick="alert('Đã thêm vào giỏ hàng')"
+                    style="background-color:red;float:right;margin-right:300px;cursor:pointer">
+                <i class="fas fa-shopping-cart" style="color:black"> Mua hàng</i>
+            </button>
+            @*<input type="submit"  value="muahang" class="button danger"/>*@
+        }
+    </div>
+}
+<style>
+    #HinhAnh {
+        float: left;
+        margin-left: 20px;
+        width: 350px;
+        height: auto;
+    }
+
+    #ThongTin {
+        float: left;
+        width: 500px;
+        margin-left: 20px;
+    }
+
+    #TenSach {
+        font-weight: normal;
+        font-size: 20pt;
+        height: auto;
+        word-wrap: break-word;
+        color: red;
+    }
+
+    #ChuDe, #NhaXuatBan {
+        font-size: 15pt;
+        font-weight: normal;
+        color: black;
+        height: auto;
+    }
+
+    #MoTa {
+        font-weight: normal;
+        font-size: 15pt;
+    }
+
+    #Gia {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 5px;
+    }
+</style>
+
+
+
+

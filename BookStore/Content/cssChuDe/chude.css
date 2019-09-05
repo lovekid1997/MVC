@@ -1,0 +1,19 @@
+﻿
+#chude a:hover{
+   font-size:15px;
+   background-color:darkcyan;
+   
+}
+
+#chude {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+    #chude span{
+        font-size:15px;
+        font-weight:bold;
+    }
+    #chude a{
+        background-color:cadetblue;
+    }

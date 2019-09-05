@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "DangNhapThanhCong";
+    Layout = "~/Views/Layout/NguoiDungLayout.cshtml";
+}
+
+<div style="background-color:white">
+    <hr id="hr" />
+    <div id="Dangkytc"
+        <h2 style="margin-left:30px">Chúc mừng bạn đăng nhập thành công, nhấn vào <a href="@Url.Action("Index","Home")">đây</a> để vào trang mua hàng.</h2>
+        </div>
+    <hr id="hr" />
+</div>
+<style>
+    #Dangkytc {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px 30px 10px 0;
+    }
+
+        #Dangkytc a {
+            text-decoration: underline;
+        }
+
+            #Dangkytc a:hover {
+                width: 20px;
+                height: 20px;
+                background-color: orange;
+            }
+
+    #hr {
+        padding: 0;
+        margin: 0;
+        border: none;
+        color: black;
+        background-color: black;
+    }
+</style>
+

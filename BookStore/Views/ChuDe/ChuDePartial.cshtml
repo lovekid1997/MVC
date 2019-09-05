@@ -1,0 +1,33 @@
+﻿
+
+@using BookStore.Models;
+@model List<ChuDe>
+
+<link href="~/Content/cssChuDe/chude.css" rel="stylesheet" />
+<div style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:20px;font-weight:400"> <h2>Danh mục chủ đề</h2>  </div>
+<hr style="color:black;background-color:black" />
+<div id="chude">
+    @{int i = 0; }
+    @{
+        foreach (var item in Model)
+        {
+            <a  style="text-decoration:none" href="@Url.Action("timSachTheoChuDe", new { @maChuDe = item.MaChuDe })" class="button button-submit btn-primary"><span>@item.TenChuDe</span></a>
+            i++;
+            if (i == 5)
+            {
+                <a href="@Url.Action("hienThiTatCaChuDe")" style="text-decoration:none" class="button button-submit btn-primary"><span>Chủ đề khác...</span></a>
+
+            }
+        }
+        <hr style="padding:0;margin:0;border:none;background-color:black;margin-top:10px;margin-bottom:-20px;" />
+    }
+</div>
+    <div style="clear:both"></div>
+    @*<a href="#" class="button">Chủ đề khoa học</a>
+
+        <a href="#" class="button button-submit">Chủ đề xã hội</a>
+
+        <a href="#" class="button">Lịch sử <span class="notification">22</span></a>
+
+        <a href="#" class="button">Button with a counter <span class="notification">22</span></a>
+        <a href="#" class="button">Button with a counter <span class="notification">22</span></a>*@
